@@ -8,7 +8,7 @@ import logo from "../src/assets/logo19.jpg";
 import Container from "react-bootstrap/Container";
 import { FaFacebook, FaGoogle  } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
 
 const Login = () => {
     return ( 
