@@ -30,15 +30,99 @@ code {
   height: 55px;
 }
 
+.header{
+  text-align: center;
+  font-weight: 200;
+  font-size:medium;
+  font-style: normal;
+  color: white;
+  height: 50px;
+}
+
+.side{
+  font-weight: 300;
+  font-size:smaller;
+  font-style: normal;
+  color: black;
+  text-align: left;
+  margin-left: 100px;
+}
+
+.date{
+  font-weight: 300;
+  font-size:smaller;
+  font-style: normal;
+  color: black;
+  text-align: right;
+  margin-right: 50px;
+  margin-top: -10px;
+
+
+}
+
+.recently{
+  font-weight: 300;
+  font-size:smaller;
+  font-style: normal;
+  color: black;
+  text-align: left;
+  margin-right: 50px;
+  margin-top: 40px;
+}
+
+.top{ 
+  text-align: left;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.confirm{
+  height: 35px;
+  width: 85px;
+}
+
+.suki{
+  text-align: left;
+  margin-top: 76px;
+  margin-left: 30px;
+  color: black;
+}
+.bar{
+  height: 40px;
+  width: 3px;
+  float: left;
+  margin-left: 30px;
+  color: red;
+}
+
+.headlines{
+  font-weight: 500;
+  font-size:smaller;
+  font-style: normal;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
 .FormLabel{
   float: left;
+  
+}
 
+.brandLabel{
+  text-align: left;
+  font-weight: 600;
+  font-size:medium;
+  font-style: normal;
+  color: white;
+  height: 50px;
 }
 
 .form
 {
   max-width: 100%;
   width: 500px;
+ 
   margin-left: 150px;
   margin-top: 150px;
 }
@@ -72,6 +156,28 @@ code {
   padding-left: -300px;
 }
 
+.brand{
+  width: 100px;
+  height: 100px;
+}
+
+.navcon{
+  border-width: 1px;
+  border-color: grey;
+  border-bottom-style: solid ;
+}
+
+.col{
+  border-width: 1px;
+  border-color: grey;
+  border-right-style: solid ;
+  
+}
+
+.row{
+  margin-top: -100px;
+}
+
 .submit{
 
   margin-right: 150px;
@@ -82,6 +188,10 @@ code {
   float: right;
 }
 
+.custom-thead {
+  font-weight: 600;
+  font-style: normal;
+}
 
 
 

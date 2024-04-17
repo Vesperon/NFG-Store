@@ -42,7 +42,7 @@ const Login = () => {
                     
                   </Form.Group>
                   <Form.Label className="forgot">Forgot Password</Form.Label>
-                  <Button className="submit mt-3" variant="danger" type="submit">
+                  <Button className="submit mt-3" variant="danger" type="submit" formAction="/inventory">
                     Submit
                   </Button>
                 </Form>

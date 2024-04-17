@@ -6,11 +6,25 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import logo from "../src/assets/logo19.jpg";
 import Container from "react-bootstrap/Container";
+import { useState } from "react";
+import { supabase } from "./supabaseClient";
 
 
 
 
 const Signup = () => {
+
+  const [formData, setFormData] = useState([
+    username,
+    storename,
+    email,
+    password,
+    confirmpassword
+    
+  ])
+
+
+
     return ( 
         <div className="App">
         <Container style={{backgroundColor:"black"}} fluid>
@@ -29,27 +43,47 @@ const Signup = () => {
                   
                   <Form.Group className="mb-2" controlId="formBasicEmail">
                     <Form.Label className="FormLabel">Username</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} type="text" placeholder="Enter Username" />
+                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                    type="text" 
+                    name="username"
+                    placeholder="Enter Username" 
+                    className="formControl"/>
                   </Form.Group>
 
                   <Form.Group className="mb-2" controlId="formBasicEmail">
                     <Form.Label className="FormLabel">Store Name</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} type="text" placeholder="Enter Store Name" />
+                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                    type="text" 
+                    placeholder="Enter Store Name" 
+                    name="storename"
+                    className="formControl"/>
                   </Form.Group>
 
                   <Form.Group className="mb-2" controlId="formBasicEmail">
                     <Form.Label className="FormLabel">Email</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} type="email" placeholder="Enter Email" />
+                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                    type="email" 
+                    name="email"
+                    placeholder="Enter Email" 
+                    className="formControl"/>
                   </Form.Group>
 
                   <Form.Group className="mb-2" controlId="formBasicPassword">
                     <Form.Label className="FormLabel">Password</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} type="password" placeholder=" Enter Password" />
+                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                    type="password" 
+                    name="password"
+                    placeholder=" Enter Password" 
+                    className="formControl"/>
                   </Form.Group>
 
                   <Form.Group className="mb-2" controlId="formBasicPassword">
                     <Form.Label className="FormLabel">Confirm Password</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} type="password" placeholder=" Enter Confirm Password" />
+                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                    type="password" 
+                    name="confirmpassword"
+                    placeholder=" Enter Confirm Password" 
+                    className="formControl"/>
                   </Form.Group>
 
                   <Form.Group className="my-1 FormLabel "  controlId="formBasicCheckbox" style={{marginLeft:"80px"}}>
