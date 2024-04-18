@@ -7,23 +7,62 @@ import Image from "react-bootstrap/Image";
 import logo from "../src/assets/logo19.jpg";
 import Container from "react-bootstrap/Container";
 import { useState } from "react";
-import { supabase } from "./supabaseClient";
+import supabase from "./supabaseClient";
 
 
 
 
 const Signup = () => {
 
-  const [formData, setFormData] = useState([
-    username,
-    storename,
-    email,
-    password,
-    confirmpassword
+  const [username, setUsername] = useState('');
+  const [storename, setStorename] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmpassword] = useState('');
+
+  // const form_register = document.getElementById("form_register");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     
-  ])
+    if(password != confirmpassword)
+    {
+      alert("Password and Confirm Password is not identical");
+      return;
+    }
+  
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: email,
+    })
+
+    if(!error)
+    {
+      
+      const { data, error } = await supabase
+      .from('merchant')
+      .insert([
+        { 
+          username: username, 
+          store_name: storename
+        },
+      ])
+      .select()
+
+      console.log(data);
+
+      alert("Check Your Email to confirm");
+      
+    }
+
+    
+    
 
 
+  }
+
+
+   
 
     return ( 
         <div className="App">
@@ -39,23 +78,29 @@ const Signup = () => {
            <div className="login">
                <h1>SIGN UP</h1>
                </div>
-                <Form className="form mt-4">
+                <Form className="form mt-4" onSubmit={handleSubmit}>
                   
-                  <Form.Group className="mb-2" controlId="formBasicEmail">
+                  <Form.Group className="mb-2" controlId="formBasicUsername">
                     <Form.Label className="FormLabel">Username</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
-                    type="text" 
-                    name="username"
-                    placeholder="Enter Username" 
-                    className="formControl"/>
+                      <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                      type="text" 
+                      name="username"
+          
+                      placeholder="Enter Username" 
+                      onChange={(e) => setUsername(e.target.value)}
+                      value={username}
+                      className="formControl"/>
                   </Form.Group>
 
-                  <Form.Group className="mb-2" controlId="formBasicEmail">
+                  <Form.Group className="mb-2" controlId="formBasicStoreName">
                     <Form.Label className="FormLabel">Store Name</Form.Label>
                     <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
                     type="text" 
                     placeholder="Enter Store Name" 
+                    onChange={(e) => setStorename(e.target.value)}
+                    value={storename}
                     name="storename"
+                 
                     className="formControl"/>
                   </Form.Group>
 
@@ -64,7 +109,10 @@ const Signup = () => {
                     <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
                     type="email" 
                     name="email"
+              
                     placeholder="Enter Email" 
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                     className="formControl"/>
                   </Form.Group>
 
@@ -73,16 +121,22 @@ const Signup = () => {
                     <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
                     type="password" 
                     name="password"
+                
                     placeholder=" Enter Password" 
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
                     className="formControl"/>
                   </Form.Group>
 
-                  <Form.Group className="mb-2" controlId="formBasicPassword">
+                  <Form.Group className="mb-2" controlId="formBasicConfirmPassword">
                     <Form.Label className="FormLabel">Confirm Password</Form.Label>
                     <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
                     type="password" 
                     name="confirmpassword"
+       
                     placeholder=" Enter Confirm Password" 
+                    onChange={(e) => setConfirmpassword(e.target.value)}
+                    value={confirmpassword}
                     className="formControl"/>
                   </Form.Group>
 
@@ -93,7 +147,7 @@ const Signup = () => {
                   <Button className="submit my-1" variant="danger" type="submit" style={{marginLeft:"160px"}}>
                     Submit
                   </Button>
-                  <p className="mt-1" style={{marginLeft:"30px"}}>Already have an account? <a href="#">Login</a></p>
+                  <p className="mt-1" style={{marginLeft:"30px"}}>Already have an account? <a href="/">Login</a></p>
                 </Form>
                
                 </div>
