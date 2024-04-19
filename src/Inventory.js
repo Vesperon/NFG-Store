@@ -65,6 +65,7 @@ const Inventory = () => {
                 </Col>
             </Row>
 
+            <Button className="align-right">Add Product</Button>
         </div>
      );
 }

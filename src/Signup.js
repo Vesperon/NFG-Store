@@ -25,7 +25,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if(password != confirmpassword)
+    if(password !== confirmpassword)
     {
       alert("Password and Confirm Password is not identical");
       return;
@@ -33,9 +33,12 @@ const Signup = () => {
   
     const { data, error } = await supabase.auth.signUp({
       email: email,
-      password: email,
-    })
+      password: password,
+    });
+    console.log(data);
+    console.log(password);
 
+    console.log(data.user);
     if(!error)
     {
       
@@ -47,12 +50,21 @@ const Signup = () => {
           store_name: storename
         },
       ])
-      .select()
+      .select();
 
       console.log(data);
+      alert("Check your Email to Confirm");
+      if(error)
+      {
+        console.log(error);
+      }
 
-      alert("Check Your Email to confirm");
       
+    }
+    else
+    {
+      
+      alert(error);
     }
 
     

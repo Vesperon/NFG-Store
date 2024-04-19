@@ -6,11 +6,45 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import logo from "../src/assets/logo19.jpg";
 import Container from "react-bootstrap/Container";
+import supabase from "./supabaseClient";
 import { FaFacebook, FaGoogle  } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useState } from "react";
 
 
 const Login = () => {
+
+    const [emailL,setEmail] = useState('');
+    const [passwordL, setPassword] = useState('');
+
+    const handleSubmit = async (e) =>{
+      e.preventDefault();
+
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: emailL,
+        password: passwordL
+      });
+      
+      if(error)
+      {
+        alert(error);
+        console.log(data);
+        console.log(emailL);
+        console.log(passwordL);
+        
+        return;
+      }
+      else
+      {
+        window.location.href="/home";
+      }
+
+
+
+    }
+
+
     return ( 
 
         <div className="App">
@@ -26,16 +60,27 @@ const Login = () => {
            <div className="login">
                <h1 >LOG IN</h1>
                </div>
-                <Form className="form mt-4">
+                <Form className="form mt-4" onSubmit={handleSubmit}>
                   
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Group className="mb-3" controlId="formBasicEmailLogin">
                     <Form.Label className="FormLabel">Email</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} type="email" placeholder="Username or Email" />
+                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                    type="email" 
+                    placeholder="Username or Email" 
+                    onChange={(e) => setEmail(e.target.value)}
+                     value={emailL}
+                    />
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Group className="mb-3" controlId="formBasicPasswordLogin">
                     <Form.Label className="FormLabel">Password</Form.Label>
-                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} type="password" placeholder="Password" />
+                    <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
+                    type="password" 
+                    placeholder="Password" 
+             
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={passwordL}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3 FormLabel "  controlId="formBasicCheckbox">
                     <Form.Check  type="checkbox" label="Remember Password" />
@@ -46,7 +91,7 @@ const Login = () => {
                     Submit
                   </Button>
                 </Form>
-                <p className="signup mt-4">Don't have account yet? <a href="#">Sign Up</a></p>
+                <p className="signup mt-4">Don't have account yet? <a href="/signup">Sign Up</a></p>
                 <div className="icon">
                 <FaGoogle className="icons google mx-2"/>
                 <FaFacebook className="icons facebook mx-2"/>
