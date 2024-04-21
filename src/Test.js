@@ -1,12 +1,18 @@
 import supabase from "./supabaseClient";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 const Test = () => {
     let merchant_id;
+    let image;
+    const [fileName, setFileName] = useState("Upload Boundary File");
     const testSubmit = async (e) =>{
         e.preventDefault();
 
+
+        console.log(fileName);
+        
         // ============== Create an Inventory ==============
         // const { data: { user } } = await supabase.auth.getUser();
 
@@ -56,6 +62,8 @@ const Test = () => {
 
         // console.log(product);
         // ============== Fetch All Product ==============
+       
+
     }
 
 
@@ -63,7 +71,20 @@ const Test = () => {
 
     <>
         <Form onSubmit={testSubmit}>
-
+        <Form.Group className="my-1">
+            <Form.Label className="FormLabel">Product Unit</Form.Label>
+            <Form.Control
+            style={{
+                backgroundColor: "white",
+                border: "2px solid black",
+                color: "black",
+            }}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setFileName(e.target.files[0].path)}
+            
+            />
+            </Form.Group>
             <Button type="submit"> Test </Button>
         </Form>
         

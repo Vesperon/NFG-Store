@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import  Modal  from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import supabase from "./supabaseClient";
+import storage from "./supabaseClient";
 import { MdDelete } from "react-icons/md";
 
 const Inventory = () => {
@@ -136,8 +137,8 @@ function MyVerticallyCenteredModal(props) {
     const [productQuantity, setProductQuantity] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productUnit, setProductUnit] = useState('');
-    
-
+    const [fileName, setFileName] = useState('');
+    const [imagePath, setImagePath] = useState('');
     const handleSubmit = async (e) =>{
         e.preventDefault();
         let merchant_id;
@@ -164,7 +165,8 @@ function MyVerticallyCenteredModal(props) {
           product_quantity: productQuantity,
           product_price: productPrice ,
           product_unit: productUnit,
-          user_id: merchant_id
+          user_id: merchant_id,
+          product_image: imagePath
         }
         ])
         .select();
@@ -173,18 +175,33 @@ function MyVerticallyCenteredModal(props) {
         {alert(errorProduct)}
         else{
             console.log(product);
+            alert("Added Successfully!");
         }
-        
-       
-
-        
-       
-        
-
-
-    
     }
  
+    async function uploadImage(e){
+      let file = e.target.files[0];
+
+      const { data, error } = await supabase
+        .storage
+        .from('product')
+        .upload('public/' + file.name, file,{
+          cacheControl: "3600",
+          upsert: false,
+        });
+        
+        console.log(data);
+        setImagePath(data.path);
+        if(error){
+          console.log(error);
+        }
+        else{
+          console.log(data);
+          console.log(file.name);
+          console.log(file);
+        }
+    }
+   
 
     return (
       <Modal
@@ -283,12 +300,26 @@ function MyVerticallyCenteredModal(props) {
                   color: "black",
                 }}
                 type="text"
-                placeholder="Enter Product Price"
+                placeholder="Enter Product Unit"
                 onChange={(e) => setProductUnit(e.target.value)}
                 value={productUnit}
               />
             </Form.Group>
 
+            <Form.Group className="my-1">
+              <Form.Label className="FormLabel">Product Image</Form.Label>
+              <Form.Control
+                style={{
+                  backgroundColor: "white",
+                  border: "2px solid black",
+                  color: "black",
+                }}
+                type="file"
+                accept="image/*"
+                onChange={(e) => uploadImage(e)}
+                
+              />
+            </Form.Group>
             <Button 
               
               onClick={props.onHide}

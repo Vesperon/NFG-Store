@@ -83,8 +83,7 @@ const Signup = () => {
 
 
       console.log(data);
-      alert("Check your Email to Confirm");
-      Login.push('/');
+      window.location.href="/";
       if(error)
       {
         console.log(error);
