@@ -8,12 +8,13 @@ import Inventory from "./Inventory";
 import Home from "./Home";
 import Order from "./Order";
 import History from "./History";
+import Test from "./Test";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 
 function App() {
   return (
-    <Router>
+    <Router Login={Login}>
       <div className="App">
        <div className="content">
           <Switch>
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path="/history">
               <History />
+            </Route>
+            <Route path="/test">
+              <Test />
             </Route>
           </Switch>
         </div>

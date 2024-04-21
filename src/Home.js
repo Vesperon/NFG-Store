@@ -35,7 +35,11 @@ const Home = () => {
             </Col>
 
             <Col xs={10} >
-            <Button className="bar" variant="danger" ></Button>
+            {/* <Button className="bar" variant="danger" ></Button> */}
+            
+                <h5 className="k">i</h5>
+            
+            
             <h1 className="headlines py-1 text-danger" >TOP HALINON</h1>
             <h1 className="date" >Date Today: 14/04/2024</h1>
             <h3 className="top mb-3">TOP 5 BEST SELLERS</h3>

@@ -7,7 +7,10 @@ import Image from "react-bootstrap/Image";
 import logo from "../src/assets/logo19.jpg";
 import Container from "react-bootstrap/Container";
 import { useState } from "react";
+import { withRouter } from "react-router-dom";
+import Login from "./Login";
 import supabase from "./supabaseClient";
+import Inventory from "./Inventory";
 
 
 
@@ -19,6 +22,7 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmpassword] = useState('');
+  let merchant_id;
 
   // const form_register = document.getElementById("form_register");
 
@@ -39,24 +43,54 @@ const Signup = () => {
     console.log(password);
 
     console.log(data.user);
+   
     if(!error)
     {
-      
+      const { data: { user } } = await supabase.auth.getUser();
       const { data, error } = await supabase
       .from('merchant')
       .insert([
         { 
           username: username, 
-          store_name: storename
+          store_name: storename,
+          uuid: user.id
         },
       ])
       .select();
 
+      let { data: merchant, error:merchError } = await supabase
+      .from('merchant')
+      .select('*');
+
+      merchant.forEach(merch => {
+        if(merch.uuid === user.id)
+        {
+          console.log(merch.uuid);
+          merchant_id = merch.id;
+          console.log(merchant_id);
+        }
+      });
+
+
+      
+      const { data:inventory, error:inventoryError } = await supabase
+      .from('inventory')
+      .insert([
+      { user_id: merchant_id}
+      ])
+      .select();
+     
+
+
       console.log(data);
       alert("Check your Email to Confirm");
+      Login.push('/');
       if(error)
       {
         console.log(error);
+      }
+      else{
+        
       }
 
       
@@ -90,7 +124,7 @@ const Signup = () => {
            <div className="login">
                <h1>SIGN UP</h1>
                </div>
-                <Form className="form mt-4" onSubmit={handleSubmit}>
+                <Form className="form mt-4" onSubmit={handleSubmit} action="/">
                   
                   <Form.Group className="mb-2" controlId="formBasicUsername">
                     <Form.Label className="FormLabel">Username</Form.Label>
@@ -133,7 +167,6 @@ const Signup = () => {
                     <Form.Control style={{backgroundColor: "white", border: "2px solid black", color: "black"}} 
                     type="password" 
                     name="password"
-                
                     placeholder=" Enter Password" 
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}

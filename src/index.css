@@ -53,9 +53,10 @@ code {
   font-size:smaller;
   font-style: normal;
   color: black;
-  text-align: right;
-  margin-right: 50px;
-  margin-top: -10px;
+  text-align: left;
+  
+  margin-left: 10px;
+  float: left;
 
 
 }
@@ -165,6 +166,7 @@ code {
   border-width: 1px;
   border-color: grey;
   border-bottom-style: solid ;
+  position: sticky;
 }
 
 .col{
@@ -193,7 +195,21 @@ code {
   font-style: normal;
 }
 
+.addProduct{
+  margin-right: 65px;
+  float: right;
 
+}
+
+.k{
+float: left;
+background-color: red;
+color: red;
+width: 20px;
+height: 40px;
+margin-left: 30px;
+border-radius: 5px;
+}
 
 .poppins-thin {
   font-family: "Poppins", sans-serif;

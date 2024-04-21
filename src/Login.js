@@ -16,6 +16,7 @@ const Login = () => {
 
     const [emailL,setEmail] = useState('');
     const [passwordL, setPassword] = useState('');
+    const [uuidMerchant, setUUID] = useState('');
 
     const handleSubmit = async (e) =>{
       e.preventDefault();
@@ -37,6 +38,8 @@ const Login = () => {
       }
       else
       {
+   
+
         window.location.href="/home";
       }
 
