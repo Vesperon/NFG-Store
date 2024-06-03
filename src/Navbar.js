@@ -12,11 +12,11 @@ const Navigation = () => {
             </Container>
             <Navbar fluid className='navcon' >
                 <Container >
-                    <Navbar.Brand href="/home" className="brandLabel">OWNER</Navbar.Brand>
+                    <Navbar.Brand href="/home" className="brandLabel">MERCHANT</Navbar.Brand>
                     <Nav className="mx-auto ">
                         <Nav.Link href="/home" className="mx-2 "  >Home</Nav.Link>
                         <Nav.Link href="/inventory" className="mx-2">Inventory</Nav.Link>
-                        <Nav.Link href="/order" className="mx-2">Orders</Nav.Link>
+                        <Nav.Link href="/shop" className="mx-2">Shop</Nav.Link>
                         <Nav.Link href="/history" className="mx-2">History</Nav.Link>
                     </Nav>
                 </Container>

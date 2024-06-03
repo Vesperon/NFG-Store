@@ -2,6 +2,8 @@ import supabase from "./supabaseClient";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Col, Card } from "react-bootstrap";
+import { CartProvider } from "react-use-cart";
 
 const Test = () => {
     let merchant_id;
@@ -70,7 +72,7 @@ const Test = () => {
     return ( 
 
     <>
-        <Form onSubmit={testSubmit}>
+        {/* <Form onSubmit={testSubmit}>
         <Form.Group className="my-1">
             <Form.Label className="FormLabel">Product Unit</Form.Label>
             <Form.Control
@@ -86,7 +88,7 @@ const Test = () => {
             />
             </Form.Group>
             <Button type="submit"> Test </Button>
-        </Form>
+        </Form> */}
         
 
 

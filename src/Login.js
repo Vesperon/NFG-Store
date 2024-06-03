@@ -29,11 +29,7 @@ const Login = () => {
       
       if(error)
       {
-        alert(error);
-        console.log(data);
-        console.log(emailL);
-        console.log(passwordL);
-        
+        alert(error);        
         return;
       }
       else

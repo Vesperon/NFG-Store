@@ -54,11 +54,26 @@ code {
   font-style: normal;
   color: black;
   text-align: left;
-  
   margin-left: 10px;
   float: left;
+}
 
+.date_right{
+  font-weight: 300;
+  font-size:smaller;
+  font-style: normal;
+  color: black;
+  text-align: right;
+  margin-right: 10px;
+  float: right;
+}
 
+.owner{
+  font-weight: 300;
+  font-size: smaller;
+  font-style: normal;
+  margin-left: 10px;
+  float: left;
 }
 
 .recently{
@@ -179,6 +194,33 @@ code {
 .row{
   margin-top: -100px;
 }
+
+.cardShop{
+  border: none !important;
+  
+}
+
+.fixed-card {
+  width: 16rem;
+  height: 24rem; /* Adjust the height as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fixed-card img {
+  height: 200px; /* Ensure the image height remains consistent */
+  object-fit: cover; /* Cover to maintain aspect ratio */
+  border-bottom: 1px solid;
+}
+
+.fixed-card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 .submit{
 

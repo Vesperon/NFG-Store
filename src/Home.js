@@ -6,13 +6,15 @@ import Button from "react-bootstrap/Button";
 
 
 const Home = () => {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
     return ( 
         <div>
         <Navbar />
         <Row className="row">
             <Col className="col">
             <h1 className="side py-1" >Settings</h1>
-            <h1 className="side py-1" >Account</h1>
+            <a href="/owner"><h1 className="side py-1" >Account</h1></a>
             <h1 className="side py-1" >About</h1>
             <br></br>
             <br></br>
@@ -41,7 +43,7 @@ const Home = () => {
             
             
             <h1 className="headlines py-1 text-danger" >TOP HALINON</h1>
-            <h1 className="date" >Date Today: 14/04/2024</h1>
+            <h1 className="date" >Date Today: {formattedDate}</h1>
             <h3 className="top mb-3">TOP 5 BEST SELLERS</h3>
             <Table className="px-5">
                 <thead>

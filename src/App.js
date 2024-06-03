@@ -9,7 +9,12 @@ import Home from "./Home";
 import Order from "./Order";
 import History from "./History";
 import Test from "./Test";
+import Owner from "./Owner";
+import Shop from "./Shop";  
+import { CartProvider } from "react-use-cart";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Cart from "./Cart";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 function App() {
@@ -38,6 +43,15 @@ function App() {
             </Route>
             <Route path="/test">
               <Test />
+            </Route>
+            <Route path="/owner">
+              <Owner />
+            </Route>  
+            <Route path="/shop">
+              <CartProvider>
+                <Shop />
+                <Cart></Cart>
+              </CartProvider>
             </Route>
           </Switch>
         </div>
