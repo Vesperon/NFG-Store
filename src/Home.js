@@ -3,14 +3,53 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import OwnerNavbar from "./OwnerNavbar";
+import supabase from "./supabaseClient";
+import { useEffect, useState } from "react";
+
+
 
 
 const Home = () => {
+    const [userID, setUserID] = useState([]);
+    useEffect(() => {
+        UserID();
+    },);
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
+    
+    async function UserID(){
+    
+        let merchant_id;
+        const { data: { user } } = await supabase.auth.getUser();
+        let { data: merchant, error:merchError } = await supabase
+        .from('merchant')
+        .select('*');
+        
+        merchant.forEach(merch => {
+        if(merch.uuid === user.id)
+        {
+            merchant_id = merch.id;
+        }
+        });
+        if(merchError)
+          console.log(merchError);
+        else
+        {
+            setUserID(merchant_id);
+            console.log(userID);
+        }
+    
+    }
+    
+
     return ( 
         <div>
-        <Navbar />
+        { userID === 16 ? (
+            <OwnerNavbar />
+        ) : (
+            <Navbar />
+        )}
         <Row className="row">
             <Col className="col">
             <h1 className="side py-1" >Settings</h1>
