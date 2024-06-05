@@ -5,6 +5,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import supabase from "./supabaseClient";
 import OwnerNavbar from "./OwnerNavbar";
+import SideBar from "./Sidebar";
 import { useState, useEffect } from "react";
 
 const History = () => {
@@ -89,27 +90,7 @@ const History = () => {
             )}
             <Row className="row">
                 <Col className="col">
-                    <h1 className="side py-1">Settings</h1>
-                    <h1 className="side py-1">Account</h1>
-                    <h1 className="side py-1">About</h1>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                <SideBar />
                 </Col>
                 <Col xs={10}>
                     <h1 className="date">Date Today: 14/04/2024</h1>

@@ -8,10 +8,16 @@ import Logo from "../src/assets/default_profile.png";
 import SideBar from "./Sidebar";
 import supabase from "./supabaseClient";
 import { Container } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
 const Owner = () => {
+    const [userID, setUserID] = useState([]);
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
+    useEffect(()=>{
+        fetchID();
+    },[])
+
 
     async function logout() {
         
@@ -23,6 +29,16 @@ const Owner = () => {
 
     }
 
+    async function fetchID(){
+        const { data: { user } } = await supabase.auth.getUser();
+        let { data: merchant, error } = await supabase
+        .from('merchant')
+        .select('*')
+        .eq('uuid', user.id);
+        setUserID(merchant);
+        console.log(merchant);
+        console.log(userID);
+    }
     return ( 
 
         <div>
@@ -51,54 +67,26 @@ const Owner = () => {
                 <Col xs={8}>
                 <Table>
                     <tbody>
-                        <tr>
-                        <h1 className="owner mt-5">Username: admin</h1>
+                        {userID.map((item,index) =>(
+                            <div key={index}>
+                                <tr>
+                            <h1 className="owner mt-5">Username: {item.username}</h1>
                         </tr>
-                        <tr>
-                        <h1 className="owner mt-2">Store Name: Neighbor Friendly Grocery Store</h1>    
-                        </tr>
-                        <tr>
-                        <h1 className="owner mt-2">Email: admin@gmail.com</h1>    
-                        </tr>
-                        <tr>
-        <Button className="owner mt-2 bg-danger" style={{marginLeft: "19px", width:"100px", border:"none", color:"white"}} onClick={()=> logout()} > Logout </Button> 
+                            <tr>
+                            <h1 className="owner mt-2">Store Name: {item.store_name}</h1>    
+                            </tr>
+                            </div>
+                        
+                       
+                        ))}
+                         <tr>
+        <Button className="owner mt-5 bg-danger" style={{marginLeft: "19px", width:"100px", border:"none", color:"white"}} onClick={()=> logout()} > Logout </Button> 
                         </tr>
                     </tbody>
                 </Table>
                 </Col>
 
             </Row>
-            <br></br>
-            <br></br>
-            <Container className="border-top">
-            <h1 style={{
-                fontWeight:"300", 
-                float:"left",  
-                fontSize:"smaller",
-                fontStyle: "normal",
-                marginLeft:"20px",
-                marginTop:"50px"
-                }}>Monthly Total Revenue</h1>
-            
-            <Table className="px-5">
-                <thead>
-                    <tr > 
-                        <th className="custom-thead">MONTH</th>
-                        <th className="custom-thead">TOTAL CAPITAL</th>
-                        <th className="custom-thead">TOTAL SALES</th>
-                        <th className="custom-thead">TOTAL PROFIT</th>     
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>000</th>
-                        <th>000</th>
-                        <th>000</th>
-                        <th>000 </th>
-                    </tr>
-                </tbody>
-            </Table>
-            </Container>
             </Col>
             
         </Row>

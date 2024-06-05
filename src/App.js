@@ -11,6 +11,7 @@ import History from "./History";
 import Test from "./Test";
 import Owner from "./Owner";
 import Shop from "./Shop";  
+import About from "./About";
 import { CartProvider } from "react-use-cart";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Cart from "./Cart";
@@ -52,6 +53,9 @@ function App() {
                 <Shop />
                 <Cart></Cart>
               </CartProvider>
+            </Route>
+            <Route path ="/about">
+              <About />
             </Route>
           </Switch>
         </div>

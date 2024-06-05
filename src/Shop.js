@@ -4,12 +4,12 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import SidebarMerchant from "./SidebarMerchant";
 import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import supabase from "./supabaseClient";
 import { useCart } from "react-use-cart";
 import ItemCard from "./ItemCard";
+import SideBar from "./Sidebar";
 
 
 const Shop = () => {
@@ -54,7 +54,7 @@ const Shop = () => {
         <Navbar />
         <Row className="row">
             <Col className="col">
-                <SidebarMerchant />
+                <SideBar />
             </Col>
             <Col xs={10} >
             <h1 className="date_right py-1">Date Today: {formattedDate}</h1>

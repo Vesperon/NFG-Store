@@ -9,6 +9,7 @@ import  Modal  from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import supabase from "./supabaseClient";
 import OwnerNavbar from "./OwnerNavbar";
+import SideBar from "./Sidebar";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
@@ -100,27 +101,7 @@ const Inventory = () => {
         )}
         <Row className="row">
           <Col className="col">
-            <h1 className="side py-1">Settings</h1>
-            <h1 className="side py-1">Account</h1>
-            <h1 className="side py-1">About</h1>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+          <SideBar />
           </Col>
 
           <Col xs={10}>

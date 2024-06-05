@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import OwnerNavbar from "./OwnerNavbar";
 import { Modal } from "react-bootstrap";
 import supabase from "./supabaseClient";
+import SideBar from "./Sidebar";
 import calculateTotal from "./calculateTotal";
 import { useEffect, useState } from "react";
 
@@ -117,7 +118,12 @@ const Order = () => {
 
                 const { error: updateError } = await supabase
                     .from('product')
-                    .update({ product_quantity: newQuantity })
+                    .update(
+                        { 
+                            product_quantity: newQuantity,
+                            product_sold: order.order_quantity  
+                         } 
+                    )
                     .eq('id', order.order_product_id)
                     .select();
 
@@ -147,9 +153,7 @@ const Order = () => {
             <OwnerNavbar />
             <Row className="row">
                 <Col className="col">
-                    <h1 className="side py-1">Settings</h1>
-                    <h1 className="side py-1">Account</h1>
-                    <h1 className="side py-1">About</h1>
+                <SideBar />
                 </Col>
 
                 <Col xs={10}>
